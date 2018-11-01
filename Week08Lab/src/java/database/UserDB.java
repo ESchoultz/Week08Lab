@@ -9,7 +9,7 @@ public class UserDB {
         try {
             User user = em.find(User.class, userId);
             return user;
-        } finally {
+        }finally {
             em.close();
         }
     }

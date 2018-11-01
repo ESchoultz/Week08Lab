@@ -20,15 +20,17 @@ public class NoteDB {
         EntityManager em = DBUtil.getEmFactory().createEntityManager();
         EntityTransaction et = em.getTransaction();
         et.begin();
+       
         try {
             em.persist(note);
             et.commit();
-        } catch (Exception e) {
+        }catch (Exception e) {
             System.out.println(e);
             et.rollback();
-        } finally {
+        }finally {
             em.close();
         }
+        
         return 1;
     }
 
@@ -36,13 +38,14 @@ public class NoteDB {
         EntityManager em = DBUtil.getEmFactory().createEntityManager();
         EntityTransaction trans = em.getTransaction();
         trans.begin();
+        
         try {
             em.merge(note);
             trans.commit();
-        } catch (Exception e) {
+        }catch (Exception e) {
             System.out.println(e);
             trans.rollback();
-        } finally {
+        }finally {
             em.close();
         }
         return 1;
@@ -53,7 +56,7 @@ public class NoteDB {
         try {
             List<Note> notes = em.createNamedQuery("Note.findAll", Note.class).getResultList();
             return notes;
-        } finally {
+        }finally {
             em.close();
         }
     }
@@ -63,7 +66,7 @@ public class NoteDB {
         try {
             Note note = em.find(Note.class, noteId);
             return note;
-        } finally {
+        }finally {
             em.close();
         }
     }
@@ -75,10 +78,10 @@ public class NoteDB {
         try {
             em.remove(em.merge(note));
             trans.commit();
-        } catch (Exception e) {
+        }catch (Exception e) {
             System.out.println(e);
             trans.rollback();
-        } finally {
+        }finally {
             em.close();
         }
         return 1;

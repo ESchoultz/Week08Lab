@@ -43,7 +43,7 @@ public class NoteServices {
     }
     
     public int insert(String contents) throws NotesDBException {
-        // Repsonsible for creating the date
+        
         Note newNote = new Note(0, new Date(), contents);
         return noteDB.insert(newNote);
     }

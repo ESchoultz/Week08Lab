@@ -37,6 +37,7 @@
                     </c:forEach>
                 </table>
             </c:when>
+            
             <c:when test="${selectedNote != null}">
                 <form action="note?save" method="POST" >
                     <input type="hidden" name="upNoteId" value="${selectedNote.noteid}" >
