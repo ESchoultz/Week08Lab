@@ -48,7 +48,7 @@ public class NoteServlet extends HttpServlet {
             throws ServletException, IOException {
         int noteId;
         String contents;
-
+        noteId = Integer.parseInt(request.getParameter("noteToDelete"));
         NoteServices ns = new NoteServices();
 
         if (request.getParameter("add") != null) {
@@ -60,8 +60,6 @@ public class NoteServlet extends HttpServlet {
                 Logger.getLogger(NoteServlet.class.getName()).log(Level.SEVERE, null, ex);
             }
         } else if (request.getParameter("delete") != null) {
-
-            noteId = Integer.parseInt(request.getParameter("noteToDelete"));
 
             try {
                 ns.delete(noteId);
@@ -83,7 +81,6 @@ public class NoteServlet extends HttpServlet {
                 Logger.getLogger(NoteServlet.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-
         try {
             request.setAttribute("notes", ns.getAll());
         } catch (NotesDBException ex) {
